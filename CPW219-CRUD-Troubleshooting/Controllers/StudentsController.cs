@@ -17,7 +17,7 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             List<Student> products = StudentDb.GetStudents(context);
             return View(products);
         }
-
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
@@ -29,6 +29,7 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             if (ModelState.IsValid)
             {
                 StudentDb.Add(p, context);
+                context.SaveChanges();
                 ViewData["Message"] = $"{p.Name} was added!";
                 return View();
             }
@@ -43,7 +44,7 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             Student p = StudentDb.GetStudent(context, id);
 
             //show it on web page
-            return View();
+            return View(p);
         }
 
         [HttpPost]
@@ -52,7 +53,8 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             if (ModelState.IsValid)
             {
                 StudentDb.Update(context, p);
-                ViewData["Message"] = "Product Updated!";
+                context.SaveChanges();
+                ViewData["Message"] = "Student Updated!";
                 return View(p);
             }
             //return view with errors
@@ -72,6 +74,7 @@ namespace CPW219_CRUD_Troubleshooting.Controllers
             Student p = StudentDb.GetStudent(context, id);
 
             StudentDb.Delete(context, p);
+            context.SaveChanges();
 
             return RedirectToAction("Index");
         }
