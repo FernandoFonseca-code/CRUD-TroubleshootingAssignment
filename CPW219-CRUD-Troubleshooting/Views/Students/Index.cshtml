@@ -6,6 +6,7 @@
     <h1 class="display-4">Welcome to the Student Roster Page</h1>
     <p></p>
 </div>
+<a class="nav-link" asp-area="" asp-controller="Students" asp-action="Create">Add a Student</a>
 
 <table class="table">
     <thead>
@@ -22,6 +23,10 @@
                 <td>@student.StudentId</td>
                 <td>@student.Name</td>
                 <td>@student.DateOfBirth.ToString("d")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@student.StudentId" class="btn btn-warning">Edit</a>
+                    <a asp-action="Delete" asp-route-id="@student.StudentId" class="btn btn-danger">Delete</a>
+                </td>
             </tr>
         }
     </tbody>
