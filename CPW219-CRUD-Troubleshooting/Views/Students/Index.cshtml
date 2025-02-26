@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Student Roster Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to the Student Roster Page</h1>
+    <p></p>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Student ID</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>@student.StudentId</td>
+                <td>@student.Name</td>
+                <td>@student.DateOfBirth.ToString("d")</td>
+            </tr>
+        }
+    </tbody>
+</table>
